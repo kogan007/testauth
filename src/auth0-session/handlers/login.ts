@@ -22,16 +22,15 @@ export default function loginHandlerFactory(
 ): HandleLogin {
   return async (req, res, options = {}) => {
     const client = await getClient();
-    const {returnTo: returnURL, pickup, delivery} = req.query;
+    const { returnTo: returnURL, pickup, delivery } = req.query;
 
     const formatted = () => {
-      if (pickup && delivery){
-          return returnURL + `&pickup=${pickup}` + `&delivery=${delivery}`
+      if (pickup && delivery) {
+        return returnURL + `&pickup=${pickup}` + `&delivery=${delivery}`;
       } else {
-          return returnURL
+        return returnURL;
       }
-  }
-
+    };
 
     const returnTo = formatted() || config.baseURL;
 
